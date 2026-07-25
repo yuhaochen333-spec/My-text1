@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Professional</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap');
+        
+        body { 
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #1d1d1f;
+            cursor: none;
+        }
+
+        /* 自定义蓝色光标 */
+        .cursor { 
+            width: 12px; height: 12px; 
+            background: #0071e3; 
+            border-radius: 50%; 
+            position: fixed; 
+            pointer-events: none; 
+            z-index: 9999; 
+            transition: transform 0.1s ease;
+        }
+
+        /* 动画定义 */
+        .fade-in-up {
+            animation: fadeInUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .glass {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.8);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-blue-200">
+
+    <div class="cursor" id="cursor"></div>
+
+    <nav class="fixed top-0 w-full glass border-b border-gray-100 z-50">
+        <div class="max-w-5xl mx-auto px-6 h-14 flex justify-between items-center">
+            <span class="text-sm font-medium tracking-tight">Portfolio</span>
+            <div class="relative group cursor-pointer">
+                <span class="text-sm text-gray-500 hover:text-black transition-colors">Menu</span>
+                <div class="absolute right-0 top-full pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
+                    <div class="bg-white/90 backdrop-blur-xl shadow-2xl rounded-2xl p-2 w-48 border border-gray-100">
+                        <a href="#about" class="block px-4 py-3 text-sm hover:bg-gray-50 rounded-xl transition">About me</a>
+                        <a href="#skills" class="block px-4 py-3 text-sm hover:bg-gray-50 rounded-xl transition">Skills</a>
+                        <a href="#experience" class="block px-4 py-3 text-sm hover:bg-gray-50 rounded-xl transition">Experience</a>
+                        <a href="#contact" class="block px-4 py-3 text-sm hover:bg-gray-50 rounded-xl transition">Contact me</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-5xl mx-auto px-6 pt-40 pb-20">
+        <div class="fade-in-up">
+            <h1 class="text-6xl font-semibold tracking-tighter mb-8">Design. Build. Simplify.</h1>
+            <p class="text-2xl text-gray-500 font-light max-w-xl leading-relaxed">追求极致的交互体验，刘文宝专注于构建具有逻辑美感的数字界面。</p>
+        </div>
+
+        <section id="about" class="mt-60">
+            <h2 class="text-xs font-medium tracking-widest text-gray-400 uppercase mb-8">About</h2>
+            <p class="text-4xl font-light leading-snug max-w-3xl">我们通过深度的思考，将复杂的业务逻辑转化为优雅的交互流程，让每一个点击都充满意义。</p>
+        </section>
+
+        <section id="skills" class="mt-60">
+            <h2 class="text-xs font-medium tracking-widest text-gray-400 uppercase mb-8">Skills</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+                <div class="border-t border-gray-200 pt-6">
+                    <h3 class="text-xl font-medium">Core Engineering</h3>
+                    <p class="text-gray-500 mt-4">React, Three.js, TypeScript. 始终保持对新技术的敏锐探索。</p>
+                </div>
+                <div class="border-t border-gray-200 pt-6">
+                    <h3 class="text-xl font-medium">User Experience</h3>
+                    <p class="text-gray-500 mt-4">UI/UX Design, Figma, Prototyping. 以用户为核心，创造直观体验。</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // 锚点平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
