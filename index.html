@@ -6,103 +6,123 @@
     <title>Paulie | Global Trade Specialist</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap');
         body { 
-            font-family: 'Inter', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: #ffffff;
             color: #1d1d1f;
-            -webkit-font-smoothing: antialiased;
+            cursor: none; /* 隐藏系统光标 */
         }
-        .section-full { min-height: 85vh; padding: 6rem 2rem; }
-        .nav-blur { backdrop-filter: blur(20px); background: rgba(255, 255, 255, 0.8); }
+
+        /* 呼吸小圆点光标 */
+        .cursor { 
+            width: 10px; height: 10px; 
+            background: #1d1d1f; 
+            border-radius: 50%; 
+            position: fixed; 
+            pointer-events: none; 
+            z-index: 9999;
+            transition: transform 0.1s ease;
+            box-shadow: 0 0 0 rgba(0,0,0,0.2);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0,0,0,0.4); }
+            70% { transform: scale(1.2); box-shadow: 0 0 0 10px rgba(0,0,0,0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0,0,0,0); }
+        }
+
+        .glass { backdrop-filter: blur(20px); background: rgba(255, 255, 255, 0.8); }
         .img-placeholder { background-color: #f5f5f7; border: 1px solid #e5e5e7; }
+        .section-full { min-height: 80vh; padding: 4rem 1rem; }
     </style>
 </head>
-<body>
+<body class="antialiased">
 
-    <!-- 导航栏 -->
-    <nav class="fixed top-0 w-full z-50 nav-blur border-b border-gray-100">
-        <div class="max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
-            <a href="#hero" class="font-semibold tracking-tight hover:opacity-70 transition">Paulie.</a>
+    <!-- 呼吸圆点光标 -->
+    <div class="cursor" id="cursor"></div>
+
+    <!-- 导航 -->
+    <nav class="fixed top-0 w-full glass z-50 border-b border-gray-100">
+        <div class="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
+            <a href="#hero" class="font-semibold tracking-tight">Paulie.</a>
             <div class="flex gap-6 text-sm text-gray-500">
-                <a href="#about" class="hover:text-black transition">About</a>
-                <a href="#expertise" class="hover:text-black transition">Expertise</a>
-                <a href="#projects" class="hover:text-black transition">Projects</a>
-                <a href="#contact" class="hover:text-black transition">Contact</a>
+                <a href="#about" class="hover:text-black">About</a>
+                <a href="#expertise" class="hover:text-black">Expertise</a>
+                <a href="#projects" class="hover:text-black">Projects</a>
+                <a href="#contact" class="hover:text-black">Contact</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero -->
-    <section id="hero" class="section-full flex flex-col items-center justify-center text-center">
-        <h1 class="text-7xl md:text-9xl font-thin tracking-tighter mb-8">Global Trade.</h1>
-        <p class="text-xl md:text-2xl text-gray-400 font-light max-w-lg mb-12">I am Paulie, 26. Precision, transparency, and global scaling.</p>
-        <div class="flex gap-4">
-            <a href="#about" class="px-8 py-3 bg-black text-white rounded-full hover:scale-105 transition">Explore</a>
-            <a href="#contact" class="px-8 py-3 bg-gray-100 rounded-full hover:bg-gray-200 transition">Contact</a>
-        </div>
-    </section>
+    <main class="max-w-5xl mx-auto px-6 pt-24">
+        <!-- Hero -->
+        <section id="hero" class="section-full flex flex-col justify-center">
+            <h1 class="text-7xl font-thin tracking-tighter mb-6">Global Trade.</h1>
+            <p class="text-2xl text-gray-400 font-light max-w-lg mb-10">I am Paulie, 26. Precision, transparency, and global scaling.</p>
+            <div class="flex gap-4">
+                <a href="#about" class="px-8 py-3 bg-black text-white rounded-full hover:opacity-80 transition-opacity">Explore</a>
+            </div>
+        </section>
 
-    <!-- About -->
-    <section id="about" class="section-full max-w-7xl mx-auto">
-        <div class="grid md:grid-cols-2 gap-16 items-center">
-            <div>
-                <h2 class="text-xs tracking-widest text-gray-400 uppercase mb-6">About Me</h2>
-                <p class="text-4xl md:text-5xl font-light leading-snug">
-                    以 26 岁之名，深耕外贸数字化。我不仅是贸易的执行者，更是物流架构的优化师，将复杂的跨境链路转化为流动的艺术。
-                </p>
+        <!-- About -->
+        <section id="about" class="section-full border-t border-gray-100">
+            <h2 class="text-xs tracking-widest text-gray-400 uppercase mb-12">About Me</h2>
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <p class="text-3xl font-light leading-relaxed">以 26 岁之名，深耕外贸数字化。我不仅是贸易的执行者，更是物流架构的优化师。</p>
+                <div class="img-placeholder aspect-square rounded-3xl flex items-center justify-center text-gray-400">Portrait</div>
             </div>
-            <div class="img-placeholder aspect-square rounded-3xl flex items-center justify-center text-gray-300">
-                [专业形象照片]
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Expertise -->
-    <section id="expertise" class="section-full max-w-7xl mx-auto border-t border-gray-100">
-        <h2 class="text-xs tracking-widest text-gray-400 uppercase mb-16">Expertise</h2>
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="p-8 bg-gray-50 rounded-3xl hover:bg-gray-100 transition">
-                <div class="img-placeholder aspect-video rounded-2xl mb-6"></div>
-                <h3 class="text-xl font-medium mb-3">Supply Chain</h3>
-                <p class="text-gray-500">利用数据模型优化每一个物流节点，减少 30% 履约成本，确保时效。</p>
+        <!-- Expertise -->
+        <section id="expertise" class="section-full border-t border-gray-100">
+            <h2 class="text-xs tracking-widest text-gray-400 uppercase mb-12">Expertise</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 bg-gray-50 rounded-3xl hover:bg-gray-100 transition-colors">
+                    <div class="img-placeholder aspect-video rounded-2xl mb-6"></div>
+                    <h3 class="text-xl font-medium mb-3">Supply Chain</h3>
+                    <p class="text-gray-500 text-sm">优化物流节点，减少履约成本。</p>
+                </div>
+                <div class="p-8 bg-gray-50 rounded-3xl hover:bg-gray-100 transition-colors">
+                    <div class="img-placeholder aspect-video rounded-2xl mb-6"></div>
+                    <h3 class="text-xl font-medium mb-3">Market Analytics</h3>
+                    <p class="text-gray-500 text-sm">深度挖掘全球消费脉动。</p>
+                </div>
+                <div class="p-8 bg-gray-50 rounded-3xl hover:bg-gray-100 transition-colors">
+                    <div class="img-placeholder aspect-video rounded-2xl mb-6"></div>
+                    <h3 class="text-xl font-medium mb-3">Negotiation</h3>
+                    <p class="text-gray-500 text-sm">构建稳固的商业合作格局。</p>
+                </div>
             </div>
-            <div class="p-8 bg-gray-50 rounded-3xl hover:bg-gray-100 transition">
-                <div class="img-placeholder aspect-video rounded-2xl mb-6"></div>
-                <h3 class="text-xl font-medium mb-3">Market Analytics</h3>
-                <p class="text-gray-500">深度挖掘全球消费脉动，为品牌出海提供精准的定位支持与选品咨询。</p>
-            </div>
-            <div class="p-8 bg-gray-50 rounded-3xl hover:bg-gray-100 transition">
-                <div class="img-placeholder aspect-video rounded-2xl mb-6"></div>
-                <h3 class="text-xl font-medium mb-3">Negotiation</h3>
-                <p class="text-gray-500">跨越语言与文化的鸿沟，构建稳固的商业合作，实现共赢商业格局。</p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Projects -->
-    <section id="projects" class="section-full max-w-7xl mx-auto border-t border-gray-100">
-        <h2 class="text-xs tracking-widest text-gray-400 uppercase mb-16">Case Studies</h2>
-        <div class="grid md:grid-cols-2 gap-12">
-            <div class="group cursor-pointer">
-                <div class="img-placeholder aspect-video rounded-3xl mb-6 group-hover:scale-[1.02] transition"></div>
-                <span class="text-xs text-gray-400">2024 / Europe / High-End Electronics</span>
-                <h3 class="text-3xl font-light mt-2">重构欧洲分销渠道，提升时效 40%</h3>
+        <!-- Projects -->
+        <section id="projects" class="section-full border-t border-gray-100">
+            <h2 class="text-xs tracking-widest text-gray-400 uppercase mb-12">Case Studies</h2>
+            <div class="space-y-16">
+                <div class="group cursor-pointer">
+                    <div class="img-placeholder aspect-video rounded-3xl mb-6 overflow-hidden"></div>
+                    <h3 class="text-3xl font-light group-hover:text-gray-500 transition-colors">重构欧洲分销渠道，提升时效 40%</h3>
+                </div>
+                <div class="group cursor-pointer">
+                    <div class="img-placeholder aspect-video rounded-3xl mb-6 overflow-hidden"></div>
+                    <h3 class="text-3xl font-light group-hover:text-gray-500 transition-colors">东南亚清关链路重塑，实现 0 滞留</h3>
+                </div>
             </div>
-            <div class="group cursor-pointer">
-                <div class="img-placeholder aspect-video rounded-3xl mb-6 group-hover:scale-[1.02] transition"></div>
-                <span class="text-xs text-gray-400">2023 / SE Asia / FMCG</span>
-                <h3 class="text-3xl font-light mt-2">东南亚清关链路重塑，实现 0 滞留</h3>
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- Contact -->
-    <section id="contact" class="section-full flex flex-col items-center justify-center text-center border-t border-gray-100">
-        <h2 class="text-xs tracking-widest text-gray-400 uppercase mb-8">Let's Connect</h2>
-        <a href="mailto:paulie@trade.com" class="text-6xl md:text-8xl font-thin hover:opacity-60 transition tracking-tighter">paulie@trade.com</a>
-        <p class="mt-8 text-gray-500">Available for new opportunities and global collaborations.</p>
-    </section>
+    <footer id="contact" class="py-20 text-center border-t border-gray-100">
+        <a href="mailto:paulie@trade.com" class="text-5xl font-thin hover:opacity-60 transition-opacity">paulie@trade.com</a>
+    </footer>
 
+    <script>
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', (e) => {
+            // 光标跟随逻辑，微调位置使圆点居中
+            cursor.style.left = (e.clientX - 5) + 'px';
+            cursor.style.top = (e.clientY - 5) + 'px';
+        });
+    </script>
 </body>
 </html>
